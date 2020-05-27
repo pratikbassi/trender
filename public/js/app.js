@@ -2018,9 +2018,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log("Component mounted.");
+    console.log('Component mounted.');
+  },
+  data: function data() {
+    return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    };
+  },
+  methods: {
+    formSubmit: function formSubmit(e) {
+      e.preventDefault();
+      var currentObj = this;
+      axios.post('/logout', {}).then(function () {
+        window.location.href = '/login';
+      })["catch"](function (error) {
+        currentObj.output = error;
+      });
+    }
   }
 });
 
@@ -6468,7 +6486,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.footer-links {\n    background: #8D6B94;\n    display: grid;\n    grid-template-areas:\n        \"home\"\n        \"github\"\n        \"linkedin\";\n    grid-template-columns: 100vw;\n    grid-template-rows: 5vh 5vh 5vh;\n    justify-items: left;\n    align-items: center;\n}\n.link-list {\n    padding-top: 10vh;\n    padding-left: 5vw;\n}\n.link {\n    place-self: center;\n    color: #FCFFF7;\n}\n.footer-home {\n    grid-area: home;\n}\n.footer-github {\n    grid-area: github;\n}\n.footer-linked {\n    grid-area: linkedin;\n}\n", ""]);
+exports.push([module.i, "\n.footer-links {\n    background: #8D6B94;\n    display: grid;\n    grid-template-areas:\n        \"home\"\n        \"github\"\n        \"linkedin\";\n    grid-template-columns: 100vw;\n    grid-template-rows: 5vh 5vh 5vh;\n    justify-items: left;\n    align-items: center;\n    position: fixed;\n    bottom: 0;\n}\n.link-list {\n    padding-top: 10vh;\n    padding-left: 5vw;\n}\n.link {\n    place-self: center;\n    color: #FCFFF7;\n}\n.footer-home {\n    grid-area: home;\n}\n.footer-github {\n    grid-area: github;\n}\n.footer-linked {\n    grid-area: linkedin;\n}\n", ""]);
 
 // exports
 
@@ -38407,36 +38425,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "app-nav-auth" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _c("div", { staticClass: "nav-logout" }, [
+      _c("form", { on: { submit: _vm.formSubmit } }, [
+        _c("button", { staticClass: "btn btn-success" }, [_vm._v("Logout")])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "app-nav-auth" }, [
-      _c("div", { staticClass: "nav-home" }, [
-        _c("a", { staticClass: "home-link", attrs: { href: "/" } }, [
-          _vm._v("Home")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "nav-dash" }, [
-        _c("a", { staticClass: "link", attrs: { href: "/dashboard" } }, [
-          _vm._v("Dashboard")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "nav-new" }, [
-        _c("a", { staticClass: "link", attrs: { href: "/new" } }, [
-          _vm._v("New Graph")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "nav-logout" }, [
-        _c("a", { staticClass: "link", attrs: { href: "/new" } }, [
-          _vm._v("Logout")
-        ])
+    return _c("div", { staticClass: "nav-home" }, [
+      _c("a", { staticClass: "home-link", attrs: { href: "/" } }, [
+        _vm._v("Home")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "nav-dash" }, [
+      _c("a", { staticClass: "link", attrs: { href: "/home" } }, [
+        _vm._v("Dashboard")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "nav-new" }, [
+      _c("a", { staticClass: "link", attrs: { href: "/new" } }, [
+        _vm._v("New Graph")
       ])
     ])
   }

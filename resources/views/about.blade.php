@@ -19,11 +19,14 @@
     <body>
 
             <div class="content">
-                <div class="title m-b-md">
-                    Welcome to Trender
+                <div class="card m-2">
+                    Trender is a simple app that allows users to produce and examine keyword trends on news websites over time.
                 </div>
-                <div class="card mx-auto" style='width: 20vw; padding: 10px;' >
-                    <a href='/register'>Welcome to Trender! Click here to get started</a>
+                <div class="card m-2">
+                    Screenshot of graph here
+                </div>
+                <div class="card m-2">
+                    Screenshot of dashboard here
                 </div>
             </div>
     </body>

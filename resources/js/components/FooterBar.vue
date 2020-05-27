@@ -37,6 +37,9 @@
         grid-template-rows: 5vh 5vh 5vh;
         justify-items: left;
         align-items: center;
+        position: fixed;
+        bottom: 0;
+
     }
 
     .link-list {
