@@ -1,29 +1,41 @@
-
 <template>
-    <div class="graph-box container">
-        Graph Goes Here!
-    </div>
+    <line-chart :chart-data="datacollection" :options="optionscollection"
+    ></line-chart>
 </template>
 
 <script>
+    import LineChart from '../line.js'
+
     export default {
+        props: ['graphData'],
+        components: {
+            LineChart
+        },
+        data() {
+            return {
+                datacollection: null,
+                optionscollection: null
+            }
+        },
         mounted() {
-            console.log('Component mounted.')
+            console.dir(this.graphData)
+
+            this.fillData()
+        },
+        methods: {
+            fillData() {
+                this.datacollection = this.graphData
+                this.optionscollection = {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            },
         }
+
     }
+
 </script>
 
 <style>
-    .container {
-        display: grid;
-        grid-template-areas:
-        "graph";
-        grid-template-rows: 40vh ;
-        grid-template-columns: 100vw   ;
-        justify-items: stretch;
-    }
-    .graph-box{
-        background: #DAD2D8;
-    }
 
 </style>

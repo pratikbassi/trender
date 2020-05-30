@@ -1,5 +1,11 @@
 @extends('layouts.app')
+<style>
+    .welcome {
+        min-width: 100px;
+        max-width: 200px;
+    }
 
+</style>
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -22,7 +28,7 @@
                 <div class="title m-b-md">
                     Welcome to Trender
                 </div>
-                <div class="card mx-auto" style='width: 20vw; padding: 10px;' >
+                <div class="mx-auto welcome"  >
                     <a href='/register'>Welcome to Trender! Click here to get started</a>
                 </div>
             </div>

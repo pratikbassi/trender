@@ -18,9 +18,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'Chart@index')->name('home');
 
 Route::get("/about", function () {
     return view('about');
 });
 
+Route::get('/new', 'Chart@create')->name('create');
+Route::post('/new', 'Chart@insert')->name('insert');
+Route::get('/graph/{id}', 'Chart@show');
