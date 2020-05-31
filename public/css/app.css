@@ -11071,61 +11071,6 @@ body {
   padding-right: 1vw;
 }
 
-@media only screen and (max-width: 515px) {
-  .app-nav-auth {
-    background: #8d6b94;
-    display: grid;
-    grid-template-areas: "home" "dash" "new" "logout";
-    grid-template-rows: auto;
-    grid-template-columns: auto;
-    justify-items: stretch;
-  }
-
-  .nav-logout {
-    justify-self: center;
-    padding-top: 0px;
-  }
-
-  .nodes {
-    grid-area: nodes;
-    font-size: 12px;
-  }
-
-  .keyword {
-    grid-area: keyword;
-    font-size: 12px;
-  }
-}
-
-@media only screen and (max-width: 756px) and (min-width: 515px) {
-  .app-nav-auth {
-    background: #8d6b94;
-    display: grid;
-    grid-template-areas: "home space dash logout" "home space new logout";
-    grid-template-rows: 5vh 5vh;
-    grid-template-columns: 20vw 50vw 15vw 15vw;
-    justify-items: stretch;
-  }
-
-  .nav-dash {
-    padding-top: 12px;
-  }
-
-  .nav-new {
-    padding-bottom: 12px;
-  }
-
-  .nodes {
-    grid-area: nodes;
-    font-size: 12px;
-  }
-
-  .keyword {
-    grid-area: keyword;
-    font-size: 12px;
-  }
-}
-
 .item {
   border-width: 2px;
   border-style: solid;
@@ -11133,8 +11078,8 @@ body {
   border-radius: 25px;
   background: #fff;
   display: grid;
-  grid-template-areas: "toggle keyword nodes";
-  grid-template-columns: 20vw auto 20vw;
+  grid-template-areas: "toggle keyword nodes delete";
+  grid-template-columns: 15vw 20vw auto 10vw;
   grid-template-rows: 80px;
   justify-items: left;
   align-items: center;
@@ -11232,5 +11177,76 @@ input:checked + .slider:before {
 
 .slider:before {
   border-radius: 50%;
+}
+
+.delete {
+  grid-area: delete;
+}
+
+.dash {
+  width: 95vw;
+  margin: auto;
+  padding: 2vh;
+}
+
+@media only screen and (max-width: 515px) {
+  .app-nav-auth {
+    background: #8d6b94;
+    display: grid;
+    grid-template-areas: "home" "dash" "new" "logout";
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+    justify-items: stretch;
+  }
+
+  .nav-logout {
+    justify-self: center;
+    padding-top: 0px;
+  }
+
+  .nodes {
+    grid-area: nodes;
+    font-size: 12px;
+  }
+
+  .keyword {
+    grid-area: keyword;
+    font-size: 12px;
+  }
+
+  .item {
+    grid-template-areas: "toggle keyword nodes" "toggle keyword delete";
+    grid-template-columns: 20vw auto 50px;
+    grid-template-rows: auto auto;
+  }
+}
+
+@media only screen and (max-width: 756px) and (min-width: 515px) {
+  .app-nav-auth {
+    background: #8d6b94;
+    display: grid;
+    grid-template-areas: "home space dash logout" "home space new logout";
+    grid-template-rows: 5vh 5vh;
+    grid-template-columns: 20vw 50vw 15vw 15vw;
+    justify-items: stretch;
+  }
+
+  .nav-dash {
+    padding-top: 12px;
+  }
+
+  .nav-new {
+    padding-bottom: 12px;
+  }
+
+  .nodes {
+    grid-area: nodes;
+    font-size: 12px;
+  }
+
+  .keyword {
+    grid-area: keyword;
+    font-size: 12px;
+  }
 }
 

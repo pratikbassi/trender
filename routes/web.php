@@ -27,3 +27,4 @@ Route::get("/about", function () {
 Route::get('/new', 'Chart@create')->name('create');
 Route::post('/new', 'Chart@insert')->name('insert');
 Route::get('/graph/{id}', 'Chart@show');
+Route::get('/destroy/{id}', 'Chart@destroy');

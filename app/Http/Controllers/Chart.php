@@ -79,13 +79,16 @@ class Chart extends Controller
         }
     }
 
-    public function destroy(Request $request)
+    public function destroy(Int $id)
     {
         $user = Auth::user();
 
         if ($user) {
-            $id = $request->input('id');
-            if ($request->input()) {
+            if ($id) {
+                $graph = DB::table('graphs')->where('id', $id)->first();
+                if ($graph && $user->id == $graph->user_id){
+                    DB::table('graphs')->where('id', $id)->delete();
+                }
                 return redirect()->route('home');
             } else {
                 return redirect()->route('home');

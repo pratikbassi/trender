@@ -11,11 +11,9 @@
 
 
 @section('content')
-<div style="width:80vw; margin:auto; padding:2vh;">
+<div class="dash" >
     <div class="card">
-        <div class="card-header">Your Graph Link:</div>
-
-        <div class="card-body" style="overflow: scroll; max-height:64vh;">
+        <div class="card-body" style="overflow: scroll; height:68vh;">
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
                     {{ session('status') }}

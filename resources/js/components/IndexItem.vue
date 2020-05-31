@@ -6,7 +6,7 @@
         </label>
         <div class='keyword'> Search Term: {{keyword}} </div>
         <div class='nodes'> Nodes: {{nodes}} </div>
-
+        <button v-on:click="$emit('deleted', id)" type='button' class="btn btn-danger btn-sm delete"> Delete </button>
     </div>
 </template>
 
@@ -29,9 +29,6 @@
                 this.keyword = this.data.keyword
                 this.nodes = this.data.nodes
                 this.id = this.data.id
-            },
-            clicked() {
-                $emit('clicked', $event.target.checked)
             }
         }
     };

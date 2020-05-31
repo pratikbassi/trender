@@ -1,7 +1,8 @@
 <template>
-    <div >
+    <div>
         <a class='graph-link' v-bind:href="linkTo">Click here to go to your graph! ({{linkTo}})</a>
-        <index-item v-on:checked="selected" v-for="item in list" :key="item.id" :data="item"></index-item>
+        <index-item v-on:checked="selected" v-on:deleted="deleted" v-for="item in list" :key="item.id" :data="item">
+        </index-item>
     </div>
 </template>
 
@@ -13,7 +14,7 @@
             return {
                 list: null,
                 checked: [],
-                linkTo:'/home'
+                linkTo: '/home'
             }
         },
         mounted() {
@@ -25,21 +26,28 @@
                 this.list = this.graph.map(element => {
                     return JSON.parse(element)
                 });
-            }, selected(args) {
-                if(!args[0]){
+            },
+            selected(args) {
+                if (!args[0]) {
                     let index = this.checked.indexOf(args[1])
                     this.checked.splice(index, 1);
                 } else {
                     this.checked.push(args[1])
 
                 }
-                if(this.checked.length === 0){
+                if (this.checked.length === 0) {
                     this.linkTo = '/home'
                 } else {
-                    let local = `/graph/${this.checked.join('+')}`
+                    let local = `/graph/${this.checked.sort().join('+')}`
                     this.linkTo = local;
                 }
 
+            },
+            deleted(args) {
+                this.list.splice(args[0] - 1, 1)
+                axios.get('/destroy/'+args[0]).then(response => console.dir(response)).catch(
+                    error => console.dir(error)
+                )
             }
 
         }

@@ -2034,6 +2034,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['graph'],
@@ -2064,9 +2065,17 @@ __webpack_require__.r(__webpack_exports__);
       if (this.checked.length === 0) {
         this.linkTo = '/home';
       } else {
-        var local = "/graph/".concat(this.checked.join('+'));
+        var local = "/graph/".concat(this.checked.sort().join('+'));
         this.linkTo = local;
       }
+    },
+    deleted: function deleted(args) {
+      this.list.splice(args[0] - 1, 1);
+      axios.get('/destroy/' + args[0]).then(function (response) {
+        return console.dir(response);
+      })["catch"](function (error) {
+        return console.dir(error);
+      });
     }
   }
 });
@@ -2112,9 +2121,6 @@ __webpack_require__.r(__webpack_exports__);
       this.keyword = this.data.keyword;
       this.nodes = this.data.nodes;
       this.id = this.data.id;
-    },
-    clicked: function clicked() {
-      $emit('clicked', $event.target.checked);
     }
   }
 });
@@ -75363,7 +75369,7 @@ var render = function() {
         return _c("index-item", {
           key: item.id,
           attrs: { data: item },
-          on: { checked: _vm.selected }
+          on: { checked: _vm.selected, deleted: _vm.deleted }
         })
       })
     ],
@@ -75412,7 +75418,21 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "nodes" }, [
       _vm._v(" Nodes: " + _vm._s(_vm.nodes) + " ")
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-danger btn-sm delete",
+        attrs: { type: "button" },
+        on: {
+          click: function($event) {
+            return _vm.$emit("deleted", _vm.id)
+          }
+        }
+      },
+      [_vm._v(" Delete ")]
+    )
   ])
 }
 var staticRenderFns = []
