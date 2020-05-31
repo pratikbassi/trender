@@ -15,3 +15,4 @@ yarn-error.log
 scripts/
 public/js/app.js.LICENSE.txt
 sudo systemctl restart apache2
+/public
