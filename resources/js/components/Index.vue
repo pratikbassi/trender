@@ -1,7 +1,7 @@
 <template>
     <div>
         <a class='graph-link' v-bind:href="linkTo">Click here to go to your graph! ({{linkTo}})</a>
-        <index-item v-on:checked="selected" v-on:deleted="deleted" v-for="item in list" :key="item.id" :data="item">
+        <index-item v-on:checked="selected" v-on:deleted="deleted" v-for="(item, index) in list" v-bind:key="index" v-bind:index="index" :data="item">
         </index-item>
     </div>
 </template>
@@ -44,8 +44,8 @@
 
             },
             deleted(args) {
-                this.list.splice(args[0] - 1, 1)
-                axios.get('/destroy/'+args[0]).then(response => console.dir(response)).catch(
+                this.list.splice(args[0], 1)
+                axios.get('/destroy/'+args[1]).then(response => console.dir(response)).catch(
                     error => console.dir(error)
                 )
             }
@@ -55,6 +55,3 @@
 
 </script>
 
-<style>
-
-</style>
