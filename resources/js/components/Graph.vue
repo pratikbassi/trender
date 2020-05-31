@@ -1,6 +1,5 @@
 <template>
-    <line-chart :chart-data="datacollection" :options="optionscollection"
-    ></line-chart>
+    <line-chart :chart-data="datacollection" :options="optionscollection"></line-chart>
 </template>
 
 <script>
@@ -27,7 +26,13 @@
                 this.datacollection = this.graphData
                 this.optionscollection = {
                     responsive: true,
-                    maintainAspectRatio: false
+                    maintainAspectRatio: false,
+                    scales: {
+                        xAxes: [{
+                            type: 'time',
+                            distribution: 'series'
+                        }]
+                    }
                 }
             },
         }

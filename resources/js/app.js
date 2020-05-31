@@ -24,6 +24,7 @@ Vue.component('graph', require('./components/Graph.vue').default);
 Vue.component('guest-bar', require('./components/GuestBar.vue').default);
 Vue.component('nav-bar', require('./components/NavBar.vue').default);
 Vue.component('index-item', require('./components/IndexItem.vue').default);
+Vue.component('index', require('./components/Index.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

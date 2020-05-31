@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
+use function GuzzleHttp\json_encode;
 
 class Chart extends Controller
 {
@@ -26,7 +27,26 @@ class Chart extends Controller
      */
     public function index()
     {
-        return view('home');
+        $graphData = array();
+        $user = Auth::user();
+
+        if($user){
+            $graphs = DB::table('graphs')->where('user_id', $user->id)->get();
+
+            foreach($graphs as $graph){
+                $nodeArray = DB::table('nodes')->where('graph_id', $graph->id)->get();
+
+                $store = [
+                    'keyword'=>$graph->keyword.'@'.$graph->url,
+                    'id' =>$graph->id,
+                    'nodes'=> count($nodeArray)
+                ];
+
+                array_push($graphData, json_encode($store));
+            }
+            return view('home', ['graphData'=> $graphData]);
+        }
+
     }
 
     public function create()
@@ -59,8 +79,46 @@ class Chart extends Controller
         }
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
+        $user = Auth::user();
+
+        if ($user) {
+            $id = $request->input('id');
+            if ($request->input()) {
+                return redirect()->route('home');
+            } else {
+                return redirect()->route('home');
+            }
+        } else {
+            return redirect()->route('/login');
+        }
+    }
+
+
+    protected function gen_color($index, $bg){
+        $bgColorArray = array(
+            'rgba(141, 107, 148, 0.2)',
+            'rgba(207, 92, 54, 0.2)',
+            'rgba(153, 57, 85, 0.2)',
+            'rgba(33, 160, 160, 0.2)',
+            'rgba(58, 51, 53 0.2)',
+            'rgba(195, 151, 151, 0.2)'
+        );
+        $colorArray = array(
+            'rgba(141, 107, 148, 1)',
+            'rgba(207, 92, 54, 1)',
+            'rgba(153, 57, 85, 1)',
+            'rgba(33, 160, 160, 1)',
+            'rgba(58, 51, 53 1)',
+            'rgba(195, 151, 151, 1)'
+        );
+
+        if($bg){
+            return $bgColorArray[$index % count($bgColorArray)];
+        } else{
+            return $colorArray[$index % count($colorArray)];
+        }
     }
 
     public function show(string $stringIds)
@@ -70,24 +128,29 @@ class Chart extends Controller
         $sendData = array();
         $labels = array();
 
-        foreach($ids as $id){
+        foreach($ids as $index=>$id){
             $graph = DB::table('graphs')->where('id', $id)->first();
             $nodeArray = DB::table('nodes')->where('graph_id', $id)->get();
             $nodesLabels = array();
             $nodeFreq = array();
 
             foreach ($nodeArray as $node) {
-                $coords = ['x'=> $node->created_at, 'y'=>$node->frequency];
+                //$coords = ['x'=> $node->created_at, 'y'=>$node->frequency];
                 array_push($nodesLabels, $node->created_at);
-                array_push($nodeFreq, $coords);
+                array_push($nodeFreq, $node->frequency);
             }
             $lineLabel = $graph->keyword.'@'.$graph->url;
             array_push($labels, $nodesLabels);
-            array_push($sendData, ['label'=>$lineLabel, 'data'=>$nodeFreq]);
+
+
+
+            array_push($sendData, ['label'=>$lineLabel, 'data'=>$nodeFreq, 'fill'=>false, 'borderColor'=>$this->gen_color($index, false)]);
+
         }
 
+        $datacollection = ['labels'=>$labels[0] ,'datasets'=>$sendData]; //'labels'=>$labels[0] ,
+        //print_r(json_encode($datacollection));
 
-        $datacollection = ['labels'=>$labels[0], 'datasets'=>$sendData];
         return view('graph', ['graph_data' => json_encode($datacollection)]);
     }
 }

@@ -1,9 +1,5 @@
 <style>
-    .foot {
-        position: fixed;
-        bottom: 0px;
-        width: 100vw;
-    }
+
 </style>
 
 

@@ -26,42 +26,5 @@
 </script>
 
 <style>
-    .footer-links {
-        background: #8D6B94;
-        display: grid;
-        grid-template-areas:
-            "home"
-            "github"
-            "linkedin";
-        grid-template-columns: 100vw;
-        grid-template-rows: 5vh 5vh 5vh;
-        justify-items: left;
-        align-items: center;
-        position: fixed;
-        bottom: 0;
 
-    }
-
-    .link-list {
-        padding-top: 10vh;
-        padding-left: 5vw;
-    }
-
-    .link {
-        place-self: center;
-        color: #FCFFF7;
-    }
-
-    .footer-home {
-        grid-area: home;
-
-    }
-    .footer-github {
-        grid-area: github;
-
-    }
-    .footer-linked {
-        grid-area: linkedin;
-
-    }
 </style>

@@ -7,7 +7,8 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-html, body {
+html,
+body {
     background-color: #fff;
     color: #636b6f;
     font-family: 'Nunito', sans-serif;
@@ -44,7 +45,7 @@ html, body {
     font-size: 84px;
 }
 
-.links > a {
+.links>a {
     color: #636b6f;
     padding: 0 25px;
     font-size: 13px;
@@ -59,3 +60,277 @@ html, body {
 }
 
 
+.footer-links {
+    background: #8D6B94;
+    display: grid;
+    grid-template-areas:
+        "home"
+        "github"
+        "linkedin";
+    grid-template-columns: 100vw;
+    grid-template-rows: 5vh 5vh 5vh;
+    justify-items: left;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+
+}
+
+.link-list {
+    padding-top: 10vh;
+    padding-left: 5vw;
+}
+
+.link {
+    place-self: center;
+    color: #FCFFF7;
+}
+
+.footer-home {
+    grid-area: home;
+
+}
+
+.footer-github {
+    grid-area: github;
+
+}
+
+.footer-linked {
+    grid-area: linkedin;
+
+}
+
+.welcome {
+    min-width: 100px;
+    max-width: 200px;
+}
+
+.foot {
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+}
+
+.app-nav-auth {
+    background: #8d6b94;
+    display: grid;
+    grid-template-areas: "home space dash new logout";
+    grid-template-rows: 10vh;
+    grid-template-columns: 20vw 50vw auto auto auto;
+    justify-items: stretch;
+}
+
+.nav-home {
+    grid-area: home;
+    place-self: center;
+}
+
+.nav-dash {
+    grid-area: dash;
+    place-self: center;
+}
+
+.nav-new {
+    grid-area: new;
+    place-self: center;
+}
+
+.nav-logout {
+    align-self: center;
+    grid-area: logout;
+    max-height: 36px;
+
+}
+
+.home-link {
+    place-self: center;
+    color: #fcfff7;
+}
+
+.link {
+    place-self: center;
+    color: #fcfff7;
+    padding-right: 1vw;
+}
+
+@media only screen and (max-width : 515px) {
+    .app-nav-auth {
+        background: #8d6b94;
+        display: grid;
+        grid-template-areas:
+            "home"
+            "dash"
+            "new"
+            "logout"
+        ;
+        grid-template-rows: auto;
+        grid-template-columns: auto;
+        justify-items: stretch;
+
+    }
+
+    .nav-logout {
+        justify-self: center;
+        padding-top: 0px;
+    }
+
+    .nodes {
+        grid-area: nodes;
+        font-size: 12px;
+    }
+
+    .keyword {
+        grid-area: keyword;
+        font-size: 12px;
+
+    }
+
+}
+
+@media only screen and (max-width : 756px) and (min-width: 515px) {
+    .app-nav-auth {
+        background: #8d6b94;
+        display: grid;
+        grid-template-areas:
+            "home space dash logout"
+            "home space new logout"
+        ;
+        grid-template-rows: 5vh 5vh;
+        grid-template-columns: 20vw 50vw 15vw 15vw;
+        justify-items: stretch;
+    }
+
+    .nav-dash {
+        padding-top: 12px;
+    }
+
+    .nav-new {
+        padding-bottom: 12px;
+    }
+
+    .nodes {
+        grid-area: nodes;
+        font-size: 12px;
+    }
+
+    .keyword {
+        grid-area: keyword;
+        font-size: 12px;
+
+    }
+
+}
+
+.item {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #8d6b94;
+    border-radius: 25px;
+    background: #fff;
+    display: grid;
+    grid-template-areas:
+        'toggle keyword nodes'
+    ;
+    grid-template-columns: 20vw auto 20vw;
+    grid-template-rows: 80px;
+    justify-items: left;
+    align-items: center;
+    height: 80px;
+    padding-left: 1.5vw;
+    padding-right: 2vw;
+    padding-top: 3px;
+    -webkit-transition: .4s;
+    transition: .4s;
+    margin: 1vh;
+}
+
+.card::after {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Transition to showing the bigger shadow on hover */
+.card:hover::after {
+    opacity: 1;
+}
+
+.nodes {
+    grid-area: nodes;
+}
+
+.keyword {
+    grid-area: keyword;
+
+}
+
+.graph-link {
+    align-self: center;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    grid-area: toggle;
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cf5c36;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #8d6b94;
+}
+
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #8d6b94;
+}
+
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider {
+    border-radius: 34px;
+}
+
+.slider:before {
+    border-radius: 50%;
+}

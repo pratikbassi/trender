@@ -1,9 +1,6 @@
 @extends('layouts.app')
 <style>
-    .welcome {
-        min-width: 100px;
-        max-width: 200px;
-    }
+
 
 </style>
 
