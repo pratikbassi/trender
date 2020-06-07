@@ -6,19 +6,20 @@
         </label>
         <div class='keyword'> Search Term: {{keyword}} </div>
         <div class='nodes'> Nodes: {{nodes}} </div>
-        <button v-on:click="$emit('deleted', [number, id])" type='button' class="btn btn-danger btn-sm delete"> Delete </button>
+        <button v-on:click="onClick" type='button' class="btn btn-danger btn-sm delete"> Delete </button>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['data', 'index'],
+        props: ['data', 'pos','render'],
         data() {
             return {
                 keyword: null,
                 nodes: null,
                 id: null,
-                number: null
+                index: null,
+                componentIndex: 0
             }
         },
         mounted() {
@@ -30,7 +31,10 @@
                 this.keyword = this.data.keyword
                 this.nodes = this.data.nodes
                 this.id = this.data.id
-                this.number = this.index
+                this.index = this.pos
+            },
+            onClick: function() {
+                this.$emit('deleted', [this.index, this.id])
             }
         }
     };

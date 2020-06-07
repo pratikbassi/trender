@@ -1,20 +1,22 @@
 <template>
     <div>
         <a class='graph-link' v-bind:href="linkTo">Click here to go to your graph! ({{linkTo}})</a>
-        <index-item v-on:checked="selected" v-on:deleted="deleted" v-for="(item, index) in list" v-bind:key="index" v-bind:index="index" :data="item">
+        <index-item v-on:checked="selected" v-on:deleted="deleted" v-for="(item, index) in list" :key="forRender" :pos="index" :data="item" v-bind:render="forRender">
         </index-item>
     </div>
 </template>
 
 <script>
     import IndexItem from './IndexItem'
+    import Vue from 'vue'
     export default {
         props: ['graph'],
         data() {
             return {
                 list: null,
                 checked: [],
-                linkTo: '/home'
+                linkTo: '/home',
+                forRender: 0
             }
         },
         mounted() {
@@ -44,10 +46,11 @@
 
             },
             deleted(args) {
-                this.list.splice(args[0], 1)
+                this.$delete(this.list, args[0])
                 axios.get('/destroy/'+args[1]).then(response => console.dir(response)).catch(
                     error => console.dir(error)
                 )
+                this.forRender +=1;
             }
 
         }
