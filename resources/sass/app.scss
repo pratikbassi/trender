@@ -56,7 +56,6 @@ body {
 }
 
 .m-b-md {
-    margin-bottom: 30px;
 }
 
 
@@ -275,6 +274,12 @@ input:checked+.slider:before {
     padding:2vh;
 }
 
+.frontpage {
+    width:700px;
+    margin:auto;
+    padding:2vh;
+}
+
 @media only screen and (max-width : 515px) {
     .app-nav-auth {
         background: #8d6b94;
@@ -313,7 +318,14 @@ input:checked+.slider:before {
         grid-template-columns: 20vw auto 50px ;
         grid-template-rows: auto auto ;
     }
-
+    .frontpage {
+        width:95vw;
+        margin:auto;
+        padding:2vh;
+    }
+    .title {
+        font-size: 26px;
+    }
 }
 
 @media only screen and (max-width : 756px) and (min-width: 515px) {
@@ -346,6 +358,14 @@ input:checked+.slider:before {
         grid-area: keyword;
         font-size: 12px;
 
+    }
+    .frontpage {
+        width:95vw;
+        margin:auto;
+        padding:2vh;
+    }
+    .title {
+        font-size: 50px;
     }
 
 }

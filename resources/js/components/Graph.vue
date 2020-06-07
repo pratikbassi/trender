@@ -1,5 +1,5 @@
 <template>
-    <line-chart :chart-data="datacollection" :options="optionscollection"></line-chart>
+    <line-chart  :chart-data="datacollection" :options="optionscollection"></line-chart>
 </template>
 
 <script>

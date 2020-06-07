@@ -154,7 +154,6 @@ class Chart extends Controller
 
         $datacollection = ['labels'=>$labels[0] ,'datasets'=>$sendData]; //'labels'=>$labels[0] ,
         //print_r(json_encode($datacollection));
-
         return view('graph', ['graph_data' => json_encode($datacollection)]);
     }
 }
