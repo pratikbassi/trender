@@ -68,9 +68,13 @@ class Chart extends Controller
             $keyword = $request->input('keyword');
             $url = $request->input('url');
             $fixed = parse_url($url, PHP_URL_HOST);
-            $fixed = preg_replace('/^www./','' ,$fixed );
+            if($fixed){
+                $url = $fixed;
+            }
+            $url = preg_replace('/^www./','' ,$url );
+
             if ($request->input()) {
-                DB::insert('insert into graphs (user_id, keyword, url) values (?, ?, ?)', [$user->id, $keyword, $fixed]);
+                DB::insert('insert into graphs (user_id, keyword, url) values (?, ?, ?)', [$user->id, $keyword, $url]);
                 return redirect()->route('home');
             } else {
                 return redirect()->route('/new');
@@ -139,9 +143,9 @@ class Chart extends Controller
             $nodeFreq = array();
 
             foreach ($nodeArray as $node) {
-                //$coords = ['x'=> $node->created_at, 'y'=>$node->frequency];
+                $coords = ['x'=> $node->created_at, 'y'=>$node->frequency];
                 array_push($nodesLabels, $node->created_at);
-                array_push($nodeFreq, $node->frequency);
+                array_push($nodeFreq, $coords);
             }
             $lineLabel = $graph->keyword.'@'.$graph->url;
             array_push($labels, $nodesLabels);
