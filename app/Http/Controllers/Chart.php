@@ -152,7 +152,7 @@ class Chart extends Controller
 
 
 
-            array_push($sendData, ['label'=>$lineLabel, 'data'=>$nodeFreq, 'fill'=>false, 'borderColor'=>$this->gen_color($index, false)]);
+            array_push($sendData, ['label'=>$lineLabel, 'data'=>$nodeFreq, 'fill'=>false, 'borderColor'=>$this->gen_color($index, false), "showLine"=>true] );
 
         }
 
