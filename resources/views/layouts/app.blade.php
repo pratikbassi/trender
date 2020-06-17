@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,15 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <?php
-  //set headers to NOT cache a page
-  header("Cache-Control: no-cache, must-revalidate"); //HTTP 1.1
-  header("Pragma: no-cache"); //HTTP 1.0
-  header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
-?>
 </head>
-
 <body>
     @include('partials/nav')
 
@@ -36,7 +27,7 @@
 
         @include('partials/nav')
 
-        <div>
+        <div >
             @yield('content')
         </div>
 
@@ -44,5 +35,4 @@
 
     </div>
 </body>
-
 </html>
