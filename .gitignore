@@ -17,3 +17,4 @@ sudo systemctl restart apache2
 public/js/app.js
 .DS_Store
 public/.DS_Store
+.idea/

@@ -1,7 +1,8 @@
 <template>
     <div>
         <a class='graph-link' v-bind:href="linkTo">Click here to go to your graph! ({{linkTo}})</a>
-        <index-item v-on:checked="selected" v-on:deleted="deleted" v-for="(item, index) in list" :key="forRender" :pos="index" :data="item" v-bind:render="forRender">
+        <index-item v-on:checked="selected" v-on:deleted="deleted" v-for="(item, index) in list" :key="forRender"
+            :pos="index" :data="item" v-bind:render="forRender">
         </index-item>
     </div>
 </template>
@@ -47,14 +48,19 @@
             },
             deleted(args) {
                 this.$delete(this.list, args[0])
-                axios.get('/destroy/'+args[1]).then(response => console.dir(response)).catch(
+                console.dir(args[1])
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                axios.get('/destroy/' + args[1]).then(response => console.dir(response)).catch(
                     error => console.dir(error)
                 )
-                this.forRender +=1;
+                this.forRender += 1;
             }
 
         }
     };
 
 </script>
-
