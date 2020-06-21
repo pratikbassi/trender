@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use function GuzzleHttp\json_encode;
+use App\Http\Controllers\Chart;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,28 +18,24 @@ use function GuzzleHttp\json_encode;
 */
 
 Route::get('/', function () {
-    $datacollection = [
-        "labels"=>["2020-05-27","2020-05-28","2020-05-29","2020-05-30"],
-        "datasets"=>[
-            [
-                "label"=>"trump@cnn.com","data"=>["59","43","46","13"],"fill"=>false,"borderColor"=>"rgba(141, 107, 148, 1)", "showLine"=>true
-            ],
-            [
-                "label"=>"trump@bbc.com","data"=>["20","24","30","15"],"fill"=>false,"borderColor"=>"rgba(207, 92, 54, 1)", "showLine"=>true
-            ],
-            [
-                "label"=>"biden@cnn.com","data"=>["11","13","8","4"],"fill"=>false,"borderColor"=>"rgba(153, 57, 85, 1)", "showLine"=>true
-            ],
-            [
-                "label"=>"biden@bbc.com","data"=>["2","2","1","1"],"fill"=>false,"borderColor"=>"rgba(33, 160, 160, 1)", "showLine"=>true
-            ]
-        ],
+    $admin = DB::table('users')
+        ->first();
+    $ids = DB::table('graphs')
+        ->where('user_id','=',$admin->id)
+        ->get();
 
-        ];
+    $id_string = "";
 
+    foreach($ids as $graph){
+        $id_string .= $graph->id;
+        $id_string .= "+";
+    }
 
+    $id_string = substr($id_string, 0, strlen($id_string)-1 );
 
+    $CHART = new Chart();
 
+    $datacollection = $CHART->graph_data($id_string);
 
     return view('welcome', ['graph_data' => json_encode($datacollection)]);
 });

@@ -140,8 +140,7 @@ class Chart extends Controller
         }
     }
 
-    public function show(string $stringIds)
-    {
+    public function graph_data(string $stringIds){
         $ids = explode('+', $stringIds, 63);
         array_walk($ids, 'intval');
         $sendData = array();
@@ -167,8 +166,13 @@ class Chart extends Controller
 
         }
 
-        $datacollection = ['labels'=>$labels[0] ,'datasets'=>$sendData]; //'labels'=>$labels[0] ,
+        return ['labels'=>$labels[0] ,'datasets'=>$sendData]; //'labels'=>$labels[0] ,
         //print_r(json_encode($datacollection));
+    }
+
+    public function show(string $stringIds)
+    {
+        $datacollection = $this->graph_data($stringIds);
         return view('graph', ['graph_data' => json_encode($datacollection)]);
     }
 }
