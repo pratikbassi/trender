@@ -20,24 +20,30 @@ use App\Http\Controllers\Chart;
 Route::get('/', function () {
     $admin = DB::table('users')
         ->first();
-    $ids = DB::table('graphs')
-        ->where('user_id','=',$admin->id)
-        ->get();
 
-    $id_string = "";
+    if($admin){
+        $ids = DB::table('graphs')
+            ->where('user_id','=',$admin->id)
+            ->get();
 
-    foreach($ids as $graph){
-        $id_string .= $graph->id;
-        $id_string .= "+";
+        $id_string = "";
+
+        foreach($ids as $graph){
+            $id_string .= $graph->id;
+            $id_string .= "+";
+        }
+
+        $id_string = substr($id_string, 0, strlen($id_string)-1 );
+
+        $CHART = new Chart();
+
+        $datacollection = $CHART->graph_data($id_string);
+
+        return view('welcome', ['graph_data' => json_encode($datacollection)]);
+
     }
+    return view('welcome');
 
-    $id_string = substr($id_string, 0, strlen($id_string)-1 );
-
-    $CHART = new Chart();
-
-    $datacollection = $CHART->graph_data($id_string);
-
-    return view('welcome', ['graph_data' => json_encode($datacollection)]);
 });
 
 Auth::routes();
