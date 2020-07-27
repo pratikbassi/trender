@@ -29,13 +29,13 @@
                     <a href='/register'>Click here to get started making your own Trender!</a>
                 </div>
                 <div class="frontpage" >
-                    @if($graph_data)
+                    @isset($graph_data)
                         <div class="card" >
                             <div class="card-body" style="height:44vh;position: relative; ">
                                 <graph style="height:40vh;position: relative; " v-bind:graph-data="{{$graph_data}}"></graph>
                             </div>
                         </div>
-                    @endif
+                    @endisset
                 </div>
             </div>
     </body>
