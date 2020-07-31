@@ -58,7 +58,7 @@ body {
 
 
 .footer-links {
-    background: #8D6B94;
+    background: #88A2AA;
     display: grid;
     grid-template-areas:
         "home"
@@ -110,7 +110,7 @@ body {
 }
 
 .app-nav-auth {
-    background: #8d6b94;
+    background: #88A2AA;
     display: grid;
     grid-template-areas: "home space dash new logout";
     grid-template-rows: 10vh;
@@ -154,7 +154,7 @@ body {
 .item {
     border-width: 2px;
     border-style: solid;
-    border-color: #8d6b94;
+    border-color: #88A2AA;
     border-radius: 25px;
     background: #fff;
     display: grid;
@@ -240,12 +240,12 @@ body {
 }
 
 input:checked+.slider {
-    background-color: #8d6b94;
+    background-color: #88A2AA;
 }
 
 
 input:focus+.slider {
-    box-shadow: 0 0 1px #8d6b94;
+    box-shadow: 0 0 1px #88A2AA;
 }
 
 
@@ -280,7 +280,7 @@ input:checked+.slider:before {
 
 @media only screen and (max-width : 515px) {
     .app-nav-auth {
-        background: #8d6b94;
+        background: #88A2AA;
         display: grid;
         grid-template-areas:
             "home"
@@ -328,7 +328,7 @@ input:checked+.slider:before {
 
 @media only screen and (max-width : 756px) and (min-width: 515px) {
     .app-nav-auth {
-        background: #8d6b94;
+        background: #88A2AA;
         display: grid;
         grid-template-areas:
             "home space dash logout"
@@ -365,5 +365,12 @@ input:checked+.slider:before {
     .title {
         font-size: 50px;
     }
+
+}
+
+.foot {
+    position:fixed;
+    bottom: 0px;
+    width: 100vw;
 
 }

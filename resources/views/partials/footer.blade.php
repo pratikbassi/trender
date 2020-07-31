@@ -1,9 +1,7 @@
-<style>
-
-</style>
 
 
-    <footer class='foot' style="position:fixed; bottom: 0px; width: 100vw;">
+
+    <footer class='foot' >
         <div>
             <footer-bar></footer-bar>
         </div>
