@@ -1,5 +1,5 @@
 <template>
-    <line-chart  :chart-data="datacollection" :options="optionscollection"></line-chart>
+    <line-chart  :chart-data="chartData" :options="optionsObj"></line-chart>
 </template>
 
 <script>
@@ -12,8 +12,8 @@
         },
         data() {
             return {
-                datacollection: null,
-                optionscollection: null
+                chartData: null,
+                optionsObj: null
             }
         },
         mounted() {
@@ -23,8 +23,8 @@
         },
         methods: {
             fillData() {
-                this.datacollection = this.graphData
-                this.optionscollection = {
+                this.chartData = this.graphData
+                this.optionsObj = {
                     responsive: true,
                     maintainAspectRatio: false,
                     scales: {

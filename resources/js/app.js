@@ -25,6 +25,7 @@ Vue.component('guest-bar', require('./components/GuestBar.vue').default);
 Vue.component('nav-bar', require('./components/NavBar.vue').default);
 Vue.component('index-item', require('./components/IndexItem.vue').default);
 Vue.component('index', require('./components/Index.vue').default);
+Vue.component('bar', require('./components/Bar.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

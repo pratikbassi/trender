@@ -1,13 +1,4 @@
 @extends('layouts.app')
-<style>
-
-
-</style>
-
-<script>
-
-
-</script>
 
 
 @section('content')
