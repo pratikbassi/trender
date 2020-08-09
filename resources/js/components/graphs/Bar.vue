@@ -18,18 +18,20 @@
         mounted() {
 
             this.fillData()
-            console.log(this.$attrs)
         },
         methods: {
             fillData() {
                 this.chartData = this.$attrs.data
+                for(let item in this.chartData['datasets']){
+                    this.chartData['datasets'][item].fill = true;
+                    this.chartData['datasets'][item].backgroundColor= this.chartData['datasets'][item].borderColor
+                }
                 this.optionsObj = {
                     responsive: true,
                     maintainAspectRatio: false,
                     scales: {
                         xAxes: [{
-                            type: 'time',
-                            distribution: 'series'
+                            //type: 'time',
                         }]
                     }
                }
