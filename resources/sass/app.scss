@@ -20,7 +20,7 @@ body {
 }
 
 .chart-size{
-    height: 65vh;
+    max-height: 65vh;
 }
 
 .full-height {
@@ -48,7 +48,8 @@ body {
 }
 
 .title {
-    font-size: 84px;
+    font-size: 25px;
+    margin-top: 2vh;
 }
 
 .links>a {
@@ -329,6 +330,7 @@ input:checked+.slider:before {
     }
     .title {
         font-size: 26px;
+        margin-top: 0;
     }
 }
 
@@ -370,6 +372,7 @@ input:checked+.slider:before {
     }
     .title {
         font-size: 50px;
+        margin-top: 0;
     }
 
 }

@@ -3,17 +3,17 @@
         <v-tabs
             fixed-tabs
         >
-            <v-tab>IPR: Bar</v-tab>
             <v-tab>Scatter</v-tab>
+            <v-tab>IPR: Bar</v-tab>
             <v-tab>TODO: Stacked Line</v-tab>
             <v-tab-item>
                 <div class="chart-size">
-                    <Bar :data="childData"></Bar>
+                    <Scatter :data="childData"></Scatter>
                 </div>
             </v-tab-item>
             <v-tab-item>
                 <div class="chart-size">
-                    <Scatter :data="childData"></Scatter>
+                    <Bar :data="childData"></Bar>
                 </div>
             </v-tab-item>
             <v-tab-item>
