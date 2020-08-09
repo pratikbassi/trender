@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    import BarChart from '../bar.js'
+    import BarChart from '../../bar.js'
 
     export default {
         components: {
@@ -18,6 +18,7 @@
         mounted() {
 
             this.fillData()
+            console.log(this.$attrs)
         },
         methods: {
             fillData() {
@@ -39,6 +40,3 @@
 
 </script>
 
-<style>
-
-</style>

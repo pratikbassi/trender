@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    import LineChart from '../line.js'
+    import LineChart from '../../line.js'
 
     export default {
         components: {

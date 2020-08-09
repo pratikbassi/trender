@@ -1,5 +1,7 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import '~vuetify/dist/vuetify.min.css';
+@import '~@mdi/font/css/materialdesignicons.min.css';
 
 // Variables
 @import 'variables';
@@ -15,6 +17,10 @@ body {
     font-weight: 200;
     height: 100vh;
     margin: 0;
+}
+
+.chart-size{
+    height: 65vh;
 }
 
 .full-height {

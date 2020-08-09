@@ -21,18 +21,19 @@
 </head>
 <body>
     @include('partials/nav')
+    <v-app>
+        <div id="app">
 
-    <div id="app">
 
+            @include('partials/nav')
 
-        @include('partials/nav')
+            <div >
+                @yield('content')
+            </div>
 
-        <div >
-            @yield('content')
+            @include('partials/footer')
+
         </div>
-
-        @include('partials/footer')
-
-    </div>
+    </v-app>
 </body>
 </html>
