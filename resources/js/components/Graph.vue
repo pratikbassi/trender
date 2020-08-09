@@ -6,24 +6,22 @@
     import LineChart from '../line.js'
 
     export default {
-        props: ['graphData'],
         components: {
             LineChart
         },
         data() {
             return {
-                chartData: null,
-                optionsObj: null
+                chartData: {},
+                optionsObj: {}
             }
         },
         mounted() {
-            console.dir(this.graphData)
 
             this.fillData()
         },
         methods: {
             fillData() {
-                this.chartData = this.graphData
+                this.chartData = this.$attrs.data
                 this.optionsObj = {
                     responsive: true,
                     maintainAspectRatio: false,

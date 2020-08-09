@@ -1,40 +1,37 @@
 <template>
-    <bar  :chart-data="datacollection" :options="optionscollection"></bar>
-
+    <bar-chart  :chart-data="chartData" :options="optionsObj"></bar-chart>
 </template>
 
 <script>
-    import Bar from '../bar.js'
+    import BarChart from '../bar.js'
 
     export default {
-        props: ['graphData'],
         components: {
-            Bar
+            BarChart
         },
-        // data() {
-        //     return {
-        //         datacollection: {},
-        //         optionscollection: {}
-        //     }
-        // },
+        data() {
+            return {
+                chartData: {},
+                optionsObj: {}
+            }
+        },
         mounted() {
-            //console.dir(this.graphData)
 
             this.fillData()
         },
         methods: {
             fillData() {
-                // this.datacollection = this.graphData
-                // this.optionscollection = {
-                //     responsive: true,
-                //     maintainAspectRatio: false,
-                    // scales: {
-                    //     xAxes: [{
-                    //         type: 'time',
-                    //         distribution: 'series'
-                    //     }]
-                    // }
-               // }
+                this.chartData = this.$attrs.data
+                this.optionsObj = {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        xAxes: [{
+                            type: 'time',
+                            distribution: 'series'
+                        }]
+                    }
+               }
             },
         }
 

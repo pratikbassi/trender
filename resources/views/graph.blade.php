@@ -7,8 +7,8 @@
 
                 <div class="card-body" >
 
-                    <graph v-bind:graph-data="{{$graph_data}}"></graph>
-{{--                    <bar v-bind:graph-data="{{$graph_data}}"></bar>--}}
+                    <graph :data="{{$graph_data}}"></graph>
+                    <bar :data="{{$graph_data}}"></bar>
                 </div>
             </div>
         </div>
